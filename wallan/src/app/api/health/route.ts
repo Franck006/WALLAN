@@ -1,12 +1,32 @@
 import { NextResponse } from "next/server";
+import { createClient } from "@/lib/supabase/server";
 
 export async function GET() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+  try {
+    const supabase = await createClient();
 
-  return NextResponse.json({
-    application: "WALLAN",
-    nextjs: "OK",
-    supabaseConfigured: Boolean(url && key),
-  });
+    const { data, error } = await supabase
+      .from("wallan_health_check")
+      .select("id, message")
+      .limit(1)
+      .single();
+
+    if (error) {
+      return NextResponse.json(
+        { status: "error", message: error.message },
+        { status: 503 }
+      );
+    }
+
+    return NextResponse.json({
+      status: "success",
+      database: "PostgreSQL",
+      data,
+    });
+  } catch {
+    return NextResponse.json(
+      { status: "error", message: "Connexion impossible" },
+      { status: 503 }
+    );
+  }
 }
