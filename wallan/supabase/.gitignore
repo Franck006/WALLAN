@@ -2,6 +2,8 @@
 .branches
 .temp
 
+/backups/
+
 # dotenvx
 .env.keys
 .env.local
