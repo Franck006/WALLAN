@@ -20,3 +20,15 @@ Avant toute modification, lire intégralement `ARCHITECTURE.md` et `docs/REPARTI
 - Commenter en français uniquement une règle métier complexe ou une décision de sécurité utile.
 - Exécuter TypeScript, ESLint et les tests pertinents, puis signaler tout test non exécuté.
 - Ne créer aucun commit et ne pousser aucune branche sans demande explicite.
+
+## Design System WALLAN
+
+Avant toute création ou modification d'interface, lire intégralement `docs/DESIGN_SYSTEM.md` et le considérer comme la référence visuelle normative du projet.
+
+- Respecter obligatoirement les tokens, palettes, typographies, espacements, arrondis, composants, états, règles responsive et principes d'accessibilité qui y sont définis.
+- Réutiliser les primitives de `src/components/ui` et les composants de `src/components/layout` lorsqu'ils existent ; ne pas recréer localement une variante visuelle équivalente.
+- Ne pas introduire de nouvelle couleur, police, échelle d'espacement, famille d'arrondis ou convention de composant sans mettre à jour le Design System et justifier la divergence.
+- Pour une interface ou un état absent de Bolt, appliquer les règles **[COMPLÉMENT]** plutôt que d'inventer une charte propre au module.
+- Appliquer en priorité les règles **[ACCESSIBILITÉ]**, y compris lorsqu'elles corrigent une combinaison issue de Bolt.
+- Vérifier les états loading, vide, erreur, succès et désactivé, le focus clavier, les contrastes et les comportements mobile, tablette et desktop avant de déclarer une interface terminée.
+- Maintenir la distinction entre règles **[BOLT]** et **[COMPLÉMENT]** lors de toute évolution substantielle de la documentation.
